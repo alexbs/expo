@@ -11,7 +11,7 @@ jest.mock('../user/actions', () => ({
 }));
 
 beforeEach(() => {
-  asMock(ensureLoggedInAsync).mockReset();
+  asMock(ensureLoggedInAsync).mockClear();
 });
 
 describe(signClassicExpoGoManifestAsync, () => {
