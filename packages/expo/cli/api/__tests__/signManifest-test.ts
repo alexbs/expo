@@ -19,7 +19,7 @@ describe(signClassicExpoGoManifestAsync, () => {
     const scope = nock(getExpoApiBaseUrl())
       .post('/v2/manifest/sign')
       .reply(200, { data: { response: '...' } });
-    expect(await signClassicExpoGoManifestAsync({} as any)).toBe('...');
+    await expect(signClassicExpoGoManifestAsync({} as any)).resolves.toBe('...');
     expect(ensureLoggedInAsync).toHaveBeenCalled();
     expect(scope.isDone()).toBe(true);
   });
@@ -29,7 +29,8 @@ describe(signExpoGoManifestAsync, () => {
     const scope = nock(getExpoApiBaseUrl())
       .post('/v2/manifest/eas/sign')
       .reply(200, { data: { signature: '...' } });
-    expect(await signExpoGoManifestAsync({} as any)).toBe('...');
+
+    await expect(signExpoGoManifestAsync({} as any)).resolves.toBe('...');
     expect(ensureLoggedInAsync).toHaveBeenCalled();
     expect(scope.isDone()).toBe(true);
   });

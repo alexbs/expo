@@ -27,9 +27,9 @@ async function getSchemaAsync(sdkVersion: string): Promise<Schema> {
  *
  * @param sdkVersion
  */
-export async function getAssetSchemasAsync(sdkVersion: string | undefined): Promise<string[]> {
+export async function getAssetSchemasAsync(sdkVersion: string = 'UNVERSIONED'): Promise<string[]> {
   // If no SDK version is available then fall back to unversioned
-  const schema = await getSchemaAsync(sdkVersion ?? 'UNVERSIONED');
+  const schema = await getSchemaAsync(sdkVersion);
   const assetSchemas: string[] = [];
   const visit = (node: Schema, fieldPath: string) => {
     if (node.meta && node.meta.asset) {
